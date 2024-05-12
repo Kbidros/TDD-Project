@@ -1,6 +1,7 @@
 package se.reky.hakan;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import se.reky.hakan.model.Player;
 
@@ -13,29 +14,35 @@ public class PlayerInteractionTest {
     @BeforeEach
     public void setUp() {
         player = new Player();
+        player.setHp(80);
     }
 
     private PlayerInteraction createPlayerInteraction(String dataForScanner) {
         Scanner scanner = new Scanner(dataForScanner);
-
-        return new PlayerInteraction() {
-            @Override
-            public void setupPlayer(Player player) {
-
-            }
-
-            @Override
-            public void updatePlayerHealth(Player player, int hp) {
-
-            }
-
-            @Override
-            public void greetPlayer(Player player) {
-            }
-        };
+        IOHandler ioHandler = new IOHandler(scanner);
+        return new SimplePlayerInteraction(ioHandler);
     }
-    @Test
-    public void testSomething() {
 
+
+    @Test
+    public void testPlayerSetup() {
+        String expectedName = "Kristian";
+        PlayerInteraction playerInteraction = createPlayerInteraction(expectedName);
+
+        playerInteraction.setupPlayer(player);
+
+        Assertions.assertEquals(expectedName, player.getName());
+    }
+
+    @Test
+    public void testUpdatePlayerHealth() {
+        PlayerInteraction playerInteraction = createPlayerInteraction("");
+
+        int initialHealth = player.getHp();
+        int healthChange = -55;
+        playerInteraction.updatePlayerHealth(player, healthChange);
+
+        int expectedHealth = initialHealth + healthChange;
+        Assertions.assertEquals(expectedHealth, player.getHp());
     }
 }
