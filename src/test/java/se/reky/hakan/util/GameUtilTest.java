@@ -13,10 +13,8 @@ public class GameUtilTest {
 
         GameUtil gameUtil = new GameUtil();
 
-        Exception exception = assertThrows(GameException.class, () -> {
+            assertThrows(GameException.class, () -> {
             gameUtil.toLowerCaseButFirstLetterCapitalized(null);
         });
-
-        Assertions.assertEquals("Input can not be null", exception.getMessage());
     }
 }

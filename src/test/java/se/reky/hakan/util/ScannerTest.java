@@ -13,8 +13,6 @@ public class ScannerTest {
     public void testScannerNextLine() {
         String inputData = "Hej Kristian";
 
-        InputStream originalSystemIn = System.in;
-
         System.setIn(new ByteArrayInputStream(inputData.getBytes()));
 
         Scanner scanner = new Scanner(System.in);
@@ -23,6 +21,5 @@ public class ScannerTest {
 
         Assertions.assertEquals(inputData, actualInput);
 
-        System.setIn(originalSystemIn);
     }
 }
