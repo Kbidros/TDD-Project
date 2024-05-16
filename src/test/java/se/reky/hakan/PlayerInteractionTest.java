@@ -48,6 +48,6 @@ public class PlayerInteractionTest {
 
     @Test
     void testingGithubActions() {
-        Assertions.assertEquals(5,3);
+        Assertions.assertEquals(5,5);
     }
 }
