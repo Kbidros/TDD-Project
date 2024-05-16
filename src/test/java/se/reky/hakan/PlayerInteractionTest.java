@@ -45,4 +45,9 @@ public class PlayerInteractionTest {
         int expectedHealth = initialHealth + healthChange;
         Assertions.assertEquals(expectedHealth, player.getHp());
     }
+
+    @Test
+    void testingGithubActions() {
+        Assertions.assertEquals(5,3);
+    }
 }
